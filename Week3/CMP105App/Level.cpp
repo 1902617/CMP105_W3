@@ -36,7 +36,25 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
+	if (input->isKeyDown('W'))
+	{
+		playCircle.move(0, speed * dt);
+	}
 
+	if (input->isKeyDown('S'))
+	{
+		playCircle.move(0, -speed * dt);
+	}
+
+	if (input->isKeyDown('D'))
+	{
+		playCircle.move(speed * dt, 0);
+	}
+
+	if (input->isKeyDown('A'))
+	{
+		playCircle.move(-speed * dt, 0);
+	}
 }
 
 // Update game objects
@@ -72,7 +90,7 @@ void Level::render()
 {
 	beginDraw();
 	window->draw(proCircle);
-
+	window->draw(playCircle);
 	endDraw();
 }
 
