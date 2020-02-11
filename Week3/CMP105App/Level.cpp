@@ -18,7 +18,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	proCircle.setOutlineThickness(1);
 	proCircle.setOutlineColor(sf::Color::Red);
 	proCircle.setPosition(20, 300);
-	speed = 200.f;
+	speed = 100.f;
 
 	playCircle.setRadius(50);
 	circleOrigin.x = playCircle.getRadius();
@@ -36,24 +36,40 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
-	if (input->isKeyDown('W'))
+	if (input->isKeyDown(sf::Keyboard::S))
 	{
 		playCircle.move(0, speed * dt);
 	}
 
-	if (input->isKeyDown('S'))
+	if (input->isKeyDown(sf::Keyboard::W))
 	{
 		playCircle.move(0, -speed * dt);
 	}
 
-	if (input->isKeyDown('D'))
+	if (input->isKeyDown(sf::Keyboard::D))
 	{
 		playCircle.move(speed * dt, 0);
 	}
 
-	if (input->isKeyDown('A'))
+	if (input->isKeyDown(sf::Keyboard::A))
 	{
 		playCircle.move(-speed * dt, 0);
+	}
+
+
+	if (input->isKeyDown(sf::Keyboard::Dash))
+	{
+		if (speed >= 30)
+		{
+			speed -= 10;
+		}
+		
+	}
+
+	if (input->isKeyDown(sf::Keyboard::Equal))
+	{
+		
+		speed += 10;
 	}
 }
 
@@ -82,6 +98,12 @@ void Level::update(float dt)
 		proCircle.move(0, speed * dt);
 	else
 		proCircle.move(0, -speed * dt);
+
+
+
+
+	std::cout << playCircle.getPosition().x << std::endl;
+	std::cout << playCircle.getPosition().y << std::endl;
 	
 }
 
